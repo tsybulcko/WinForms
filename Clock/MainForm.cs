@@ -15,6 +15,29 @@ namespace Clock
 		public MainForm()
 		{
 			InitializeComponent();
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;	
+		}
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			labelTime.Text = DateTime.Now.ToString
+				(
+				"HH:mm:ss tt",
+				System.Globalization.CultureInfo.InvariantCulture
+				);
+			if (cbShowDate.Checked)
+				labelTime.Text += $"\n{DateTime.Now.ToString("yyy.MM.dd")}";
+			if (cbShowWeekday.Checked)
+				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+		}
+
+		private void btnHideControls_Click(object sender, EventArgs e)
+		{
+			cbShowDate.Visible = false;
+			cbShowWeekday.Visible = false;
+			btnHideControls.Visible = false;
+			this.ShowInTaskbar = false;
 		}
 	}
 }
